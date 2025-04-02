@@ -1,6 +1,6 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { Navbar } from './components/Navbar';
+import { Layout } from './components/Layout';
 import { IssueList } from './components/IssueList';
 import { CreateIssueForm } from './components/CreateIssueForm';
 import { theme } from './styles/theme';
@@ -11,15 +11,16 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Router>
-        <div className="app-container">
-          <Navbar />
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<IssueList />} />
-              <Route path="/create" element={<CreateIssueForm />} />
-            </Routes>
-          </main>
-        </div>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<IssueList />} />
+            <Route path="/create" element={<CreateIssueForm />} />
+            <Route path="/my-issues" element={<IssueList />} />
+            <Route path="/assigned" element={<IssueList />} />
+            <Route path="/labels" element={<div>Labels Page</div>} />
+            <Route path="/projects" element={<div>Projects Page</div>} />
+          </Routes>
+        </Layout>
       </Router>
     </ThemeProvider>
   );
