@@ -3,6 +3,9 @@ import { Navbar } from './Navbar';
 import { Sidebar } from './Sidebar';
 
 const MAX_WIDTH = '1440px';
+const SIDEBAR_WIDTH = '240px';
+const HEADER_HEIGHT = '64px';
+const LAYOUT_PADDING = '24px';
 
 const LayoutContainer = styled.div`
   min-height: 100vh;
@@ -10,14 +13,19 @@ const LayoutContainer = styled.div`
   grid-template-areas:
     "header header"
     "sidebar main";
-  grid-template-columns: 240px 1fr;
-  grid-template-rows: 64px 1fr; // 헤더 높이 고정
+  grid-template-columns: ${SIDEBAR_WIDTH} 1fr;
+  grid-template-rows: ${HEADER_HEIGHT} 1fr;
+  max-width: ${MAX_WIDTH};
+  margin: 0 auto;
+  position: relative;
 `;
 
 const Header = styled.header`
   grid-area: header;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   background-color: ${props => props.theme.colors.white};
   box-shadow: ${props => props.theme.elevation.shadow100};
@@ -25,18 +33,19 @@ const Header = styled.header`
   .header-content {
     max-width: ${MAX_WIDTH};
     margin: 0 auto;
-    padding: 0 ${props => props.theme.spacing.lg};
-    height: 100%;
+    padding: 0 ${LAYOUT_PADDING};
+    height: ${HEADER_HEIGHT};
   }
 `;
 
 const Main = styled.main`
   grid-area: main;
-  padding: ${props => props.theme.spacing.lg};
+  padding: ${LAYOUT_PADDING};
   background-color: ${props => props.theme.colors.background};
+  width: 100%;
   
   .main-content {
-    max-width: calc(${MAX_WIDTH} - 240px); // 사이드바 너비 제외
+    max-width: calc(${MAX_WIDTH} - ${SIDEBAR_WIDTH} - (${LAYOUT_PADDING} * 2));
     margin: 0 auto;
   }
 `;
@@ -45,10 +54,11 @@ const SidebarWrapper = styled.aside`
   grid-area: sidebar;
   background-color: ${props => props.theme.colors.white};
   border-right: 1px solid ${props => props.theme.colors.light};
-  height: calc(100vh - 64px);
+  height: calc(100vh - ${HEADER_HEIGHT});
   position: sticky;
-  top: 64px;
+  top: ${HEADER_HEIGHT};
   overflow-y: auto;
+  padding: ${LAYOUT_PADDING} 0;
 `;
 
 interface LayoutProps {
