@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Navbar } from './Navbar';
 import { Sidebar } from './Sidebar';
 
-const MAX_WIDTH = '1440px';
 const SIDEBAR_WIDTH = '240px';
 const HEADER_HEIGHT = '64px';
 const LAYOUT_PADDING = '24px';
@@ -15,8 +14,7 @@ const LayoutContainer = styled.div`
     "sidebar main";
   grid-template-columns: ${SIDEBAR_WIDTH} 1fr;
   grid-template-rows: ${HEADER_HEIGHT} 1fr;
-  max-width: ${MAX_WIDTH};
-  margin: 0 auto;
+  width: 100%;
   position: relative;
 `;
 
@@ -31,8 +29,8 @@ const Header = styled.header`
   box-shadow: ${props => props.theme.elevation.shadow100};
   
   .header-content {
-    max-width: ${MAX_WIDTH};
-    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
     padding: 0 ${LAYOUT_PADDING};
     height: ${HEADER_HEIGHT};
   }
@@ -45,8 +43,8 @@ const Main = styled.main`
   width: 100%;
   
   .main-content {
-    max-width: calc(${MAX_WIDTH} - ${SIDEBAR_WIDTH} - (${LAYOUT_PADDING} * 2));
-    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
   }
 `;
 
