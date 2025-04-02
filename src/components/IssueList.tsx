@@ -6,6 +6,7 @@ import { Issue } from '../types/issue';
 import { Badge } from './common/Badge';
 import { Card } from './common/Card';
 import { IssueFilter } from './IssueFilter';
+import { SearchBar } from './SearchBar';
 
 const Container = styled.div`
   padding: ${props => props.theme.spacing.md};
@@ -38,6 +39,10 @@ const CreateButton = styled.button`
     background-color: ${props => props.theme.colors.primary}dd;
     box-shadow: ${props => props.theme.elevation.shadow200};
   }
+`;
+
+const SearchContainer = styled.div`
+  margin-bottom: ${props => props.theme.spacing.md};
 `;
 
 const Grid = styled.div`
@@ -142,6 +147,10 @@ export const IssueList = () => {
         <Title>이슈 목록</Title>
         <CreateButton onClick={() => navigate('/create')}>새 이슈</CreateButton>
       </Header>
+
+      <SearchContainer>
+        <SearchBar />
+      </SearchContainer>
 
       <IssueFilter />
 
