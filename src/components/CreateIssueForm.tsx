@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useIssueStore } from '../store/issueStore';
-import { IssueFormData, IssueType, IssuePriority, IssueSeverity, IssueStatus } from '../types/issue';
+import { IssueFormData } from '../types/issue';
 
 const Container = styled.div`
   padding: ${props => props.theme.spacing.md};
@@ -104,8 +104,9 @@ const initialFormData: IssueFormData = {
   priority: 'MEDIUM',
   severity: 'MINOR',
   status: 'OPEN',
-  reporter: 'current-user', // TODO: Replace with actual user
-  labels: [],
+  reporter: '',
+  assignee: '',
+  labels: []
 };
 
 export const CreateIssueForm = () => {

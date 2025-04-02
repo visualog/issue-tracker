@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useIssueStore } from '../store/issueStore';
@@ -322,10 +322,27 @@ export const IssueDetail = () => {
     severity: 'MINOR',
     status: 'OPEN',
     reporter: '',
-    labels: [],
+    assignee: '',
+    labels: []
   });
   
   const issue = issues.find((i: Issue) => i.id === id);
+
+  useEffect(() => {
+    if (issue) {
+      setFormData({
+        title: issue.title,
+        description: issue.description,
+        type: issue.type,
+        priority: issue.priority,
+        severity: issue.severity,
+        status: issue.status,
+        reporter: issue.reporter,
+        assignee: issue.assignee,
+        labels: issue.labels
+      });
+    }
+  }, [issue]);
 
   if (!issue) {
     return (
@@ -345,7 +362,8 @@ export const IssueDetail = () => {
       severity: issue.severity,
       status: issue.status,
       reporter: issue.reporter,
-      labels: issue.labels,
+      assignee: issue.assignee,
+      labels: issue.labels
     });
     setIsEditing(true);
   };
@@ -534,7 +552,7 @@ export const IssueDetail = () => {
             <SectionTitle>라벨</SectionTitle>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
               {issue.labels.map((label: string) => (
-                <Badge key={label} backgroundColor="#F0F0F0">
+                <Badge key={label} backgroundColor="#F0F0F0" color="#000000">
                   {label}
                 </Badge>
               ))}

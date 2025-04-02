@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useIssueStore } from '../store/issueStore';
@@ -7,6 +6,7 @@ import { Badge } from './common/Badge';
 import { Card } from './common/Card';
 import { IssueFilter } from './IssueFilter';
 import { SearchBar } from './SearchBar';
+import { SortOptions } from './SortOptions';
 
 const Container = styled.div`
   padding: ${props => props.theme.spacing.md};
@@ -45,55 +45,17 @@ const SearchContainer = styled.div`
   margin-bottom: ${props => props.theme.spacing.md};
 `;
 
+const ControlsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: ${props => props.theme.spacing.md};
+`;
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: ${props => props.theme.spacing.md};
-`;
-
-const IssueCard = styled(Card)`
-  cursor: pointer;
-  transition: all 0.2s;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: ${props => props.theme.elevation.shadow300};
-  }
-`;
-
-const IssueTitle = styled.h2`
-  font-size: ${props => props.theme.typography.heading.h2};
-  color: ${props => props.theme.colors.dark};
-  margin-bottom: ${props => props.theme.spacing.sm};
-`;
-
-const IssueMeta = styled.div`
-  display: flex;
-  gap: ${props => props.theme.spacing.sm};
-  margin-bottom: ${props => props.theme.spacing.sm};
-`;
-
-const IssueDescription = styled.p`
-  font-size: ${props => props.theme.typography.body2.regular};
-  color: ${props => props.theme.colors.secondary};
-  margin-bottom: ${props => props.theme.spacing.sm};
-`;
-
-const IssueFooter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: ${props => props.theme.spacing.sm};
-`;
-
-const IssueDate = styled.span`
-  font-size: ${props => props.theme.typography.caption.regular};
-  color: ${props => props.theme.colors.secondary};
-`;
-
-const BadgeContainer = styled.div`
-  display: flex;
-  gap: ${props => props.theme.spacing.xs};
 `;
 
 const getPriorityColor = (priority: string) => {
@@ -152,7 +114,10 @@ export const IssueList = () => {
         <SearchBar />
       </SearchContainer>
 
-      <IssueFilter />
+      <ControlsContainer>
+        <IssueFilter />
+        <SortOptions />
+      </ControlsContainer>
 
       <Grid>
         {filteredIssues.map((issue: Issue) => (

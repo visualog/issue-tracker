@@ -1,31 +1,30 @@
 export type IssueStatus = 'OPEN' | 'IN_PROGRESS' | 'RESOLVED' | 'CLOSED';
 export type IssuePriority = 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
 export type IssueSeverity = 'MINOR' | 'MAJOR' | 'CRITICAL' | 'BLOCKER';
-export type IssueType = 'BUG' | 'FEATURE' | 'IMPROVEMENT' | 'TASK';
+export type IssueType = 'BUG' | 'FEATURE' | 'IMPROVEMENT' | 'TASK' | 'UI' | 'SECURITY' | 'PERFORMANCE' | 'DOCUMENTATION';
 
 export interface Comment {
   id: string;
   content: string;
   author: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Issue {
   id: string;
   title: string;
   description: string;
-  status: IssueStatus;
+  type: IssueType;
   priority: IssuePriority;
   severity: IssueSeverity;
-  type: IssueType;
-  assignee?: string;
+  status: IssueStatus;
   reporter: string;
-  createdAt: Date;
-  updatedAt: Date;
-  dueDate?: Date;
-  labels: string[];
+  assignee: string;
+  createdAt: string;
+  updatedAt: string;
   comments: Comment[];
+  labels: string[];
 }
 
 export interface IssueFormData {
@@ -36,19 +35,13 @@ export interface IssueFormData {
   severity: Issue['severity'];
   status: Issue['status'];
   reporter: string;
-  assignee?: string;
+  assignee: string;
   labels: string[];
 }
 
 export interface IssueFilter {
-  status?: Issue['status'];
-  priority?: Issue['priority'];
-  severity?: Issue['severity'];
-  type?: Issue['type'];
-  assignee?: string;
-  reporter?: string;
-  dateRange?: {
-    start?: Date;
-    end?: Date;
-  };
+  status?: Issue['status'][];
+  priority?: Issue['priority'][];
+  severity?: Issue['severity'][];
+  type?: Issue['type'][];
 } 
