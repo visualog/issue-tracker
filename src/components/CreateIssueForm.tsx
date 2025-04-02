@@ -6,6 +6,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
+  font-size: ${props => props.theme.typography.heading.h1};
   margin-bottom: ${props => props.theme.spacing.lg};
   color: ${props => props.theme.colors.dark};
 `;
@@ -15,6 +16,10 @@ const Form = styled.form`
   flex-direction: column;
   gap: ${props => props.theme.spacing.md};
   max-width: 600px;
+  background-color: ${props => props.theme.colors.white};
+  padding: ${props => props.theme.spacing.lg};
+  border-radius: ${props => props.theme.borderRadius.md};
+  box-shadow: ${props => props.theme.elevation.shadow200};
 `;
 
 const FormGroup = styled.div`
@@ -24,6 +29,7 @@ const FormGroup = styled.div`
 `;
 
 const Label = styled.label`
+  font-size: ${props => props.theme.typography.body2.medium};
   font-weight: 500;
   color: ${props => props.theme.colors.dark};
 `;
@@ -32,15 +38,29 @@ const Input = styled.input`
   padding: ${props => props.theme.spacing.sm};
   border: 1px solid ${props => props.theme.colors.secondary};
   border-radius: ${props => props.theme.borderRadius.sm};
-  font-size: ${props => props.theme.typography.fontSize.md};
+  font-size: ${props => props.theme.typography.body1.regular};
+  font-family: ${props => props.theme.typography.fontFamily};
+
+  &:focus {
+    outline: none;
+    border-color: ${props => props.theme.colors.primary};
+    box-shadow: ${props => props.theme.elevation.shadow100};
+  }
 `;
 
 const TextArea = styled.textarea`
   padding: ${props => props.theme.spacing.sm};
   border: 1px solid ${props => props.theme.colors.secondary};
   border-radius: ${props => props.theme.borderRadius.sm};
-  font-size: ${props => props.theme.typography.fontSize.md};
+  font-size: ${props => props.theme.typography.body1.regular};
+  font-family: ${props => props.theme.typography.fontFamily};
   min-height: 150px;
+
+  &:focus {
+    outline: none;
+    border-color: ${props => props.theme.colors.primary};
+    box-shadow: ${props => props.theme.elevation.shadow100};
+  }
 `;
 
 const Button = styled.button`
@@ -49,12 +69,14 @@ const Button = styled.button`
   color: ${props => props.theme.colors.white};
   border: none;
   border-radius: ${props => props.theme.borderRadius.sm};
-  font-size: ${props => props.theme.typography.fontSize.md};
+  font-size: ${props => props.theme.typography.body1.medium};
+  font-family: ${props => props.theme.typography.fontFamily};
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s;
 
   &:hover {
     background-color: ${props => props.theme.colors.primary}dd;
+    box-shadow: ${props => props.theme.elevation.shadow200};
   }
 `;
 

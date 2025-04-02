@@ -1,4 +1,3 @@
-import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Navbar } from './components/Navbar';

@@ -1,11 +1,10 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
   background-color: ${props => props.theme.colors.white};
   padding: ${props => props.theme.spacing.md};
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => props.theme.elevation.shadow100};
 `;
 
 const NavContainer = styled.div`
@@ -17,7 +16,7 @@ const NavContainer = styled.div`
 `;
 
 const NavBrand = styled(Link)`
-  font-size: ${props => props.theme.typography.fontSize.lg};
+  font-size: ${props => props.theme.typography.heading.h2};
   font-weight: bold;
   color: ${props => props.theme.colors.primary};
   text-decoration: none;
@@ -29,6 +28,7 @@ const NavLinks = styled.div`
 `;
 
 const NavLink = styled(Link)`
+  font-size: ${props => props.theme.typography.body1.regular};
   color: ${props => props.theme.colors.dark};
   text-decoration: none;
   &:hover {
