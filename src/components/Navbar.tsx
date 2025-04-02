@@ -2,17 +2,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-  background-color: ${props => props.theme.colors.white};
-  padding: ${props => props.theme.spacing.md};
-  box-shadow: ${props => props.theme.elevation.shadow100};
-`;
-
-const NavContainer = styled.div`
+  height: 64px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  justify-content: space-between;
 `;
 
 const NavBrand = styled(Link)`
@@ -31,21 +24,23 @@ const NavLink = styled(Link)`
   font-size: ${props => props.theme.typography.body1.regular};
   color: ${props => props.theme.colors.dark};
   text-decoration: none;
+  padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.md};
+  border-radius: ${props => props.theme.borderRadius.sm};
+  transition: all 0.2s ease;
+
   &:hover {
     color: ${props => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.light};
   }
 `;
 
 export const Navbar = () => {
   return (
     <Nav>
-      <NavContainer>
-        <NavBrand to="/">Issue Tracker</NavBrand>
-        <NavLinks>
-          <NavLink to="/">Issues</NavLink>
-          <NavLink to="/create">New Issue</NavLink>
-        </NavLinks>
-      </NavContainer>
+      <NavBrand to="/">Issue Tracker</NavBrand>
+      <NavLinks>
+        <NavLink to="/create">New Issue</NavLink>
+      </NavLinks>
     </Nav>
   );
 }; 
