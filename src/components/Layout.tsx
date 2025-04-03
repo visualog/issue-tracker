@@ -4,8 +4,8 @@ import { Navbar } from './Navbar';
 import { Sidebar } from './Sidebar';
 
 const SIDEBAR_WIDTH = '240px';
-const HEADER_HEIGHT = '64px';
-const LAYOUT_PADDING = '24px';
+const HEADER_HEIGHT = '48px';
+const LAYOUT_PADDING = '16px';
 
 const LayoutContainer = styled.div`
   min-height: 100vh;
@@ -17,6 +17,7 @@ const LayoutContainer = styled.div`
   grid-template-rows: ${HEADER_HEIGHT} 1fr;
   width: 100%;
   position: relative;
+  background-color: ${props => props.theme.colors.background};
 
   @media (max-width: 1024px) {
     grid-template-areas:
@@ -34,15 +35,16 @@ const Header = styled.header`
   right: 0;
   z-index: 1000;
   background-color: ${props => props.theme.colors.white};
-  box-shadow: ${props => props.theme.elevation.shadow100};
+  border-bottom: 1px solid ${props => props.theme.colors.light};
+  height: ${HEADER_HEIGHT};
   
   .header-content {
     width: 100%;
-    max-width: 100%;
+    height: 100%;
     padding: 0 ${LAYOUT_PADDING};
-    height: ${HEADER_HEIGHT};
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 `;
 
@@ -50,7 +52,7 @@ const MenuButton = styled.button`
   display: none;
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
   padding: 8px;
   color: ${props => props.theme.colors.dark};
@@ -70,10 +72,14 @@ const Main = styled.main`
   padding: ${LAYOUT_PADDING};
   background-color: ${props => props.theme.colors.background};
   width: 100%;
+  margin-top: ${HEADER_HEIGHT};
   
   .main-content {
     width: 100%;
     max-width: 100%;
+    background-color: ${props => props.theme.colors.white};
+    border-radius: ${props => props.theme.borderRadius.md};
+    box-shadow: ${props => props.theme.elevation.shadow100};
   }
 `;
 
@@ -82,17 +88,16 @@ const SidebarWrapper = styled.aside<{ isOpen: boolean }>`
   background-color: ${props => props.theme.colors.white};
   border-right: 1px solid ${props => props.theme.colors.light};
   height: calc(100vh - ${HEADER_HEIGHT});
-  position: sticky;
+  position: fixed;
   top: ${HEADER_HEIGHT};
+  left: 0;
+  width: ${SIDEBAR_WIDTH};
   overflow-y: auto;
   padding: ${LAYOUT_PADDING} 0;
   transform: translateX(0);
   transition: transform 0.3s ease-in-out;
 
   @media (max-width: 1024px) {
-    position: fixed;
-    left: 0;
-    top: ${HEADER_HEIGHT};
     transform: translateX(${props => props.isOpen ? '0' : '-100%'});
     z-index: 999;
     box-shadow: ${props => props.theme.elevation.shadow300};
